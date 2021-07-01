@@ -36,10 +36,10 @@ function Card(props) {
                 { (props.actors) ? <div>
                     <p><b>Actors:</b> {props.prevactors}</p>
                     <p><b>Country:</b> {props.country}</p>
-                    <p><b>Genre:</b> >{props.genre}</p>
+                    <p><b>Genre:</b> {props.genre}</p>
                     <p><b>Runtime: </b> {props.runtime} <span className='right'><b>Rating: </b> {props.ratings}</span></p>
                     <hr className="hrMargin"/>
-                    <p>{props.plot}</p>
+                    <p><i>{props.plot}</i></p>
                 </div> :  <Preloader/>
                 }
 

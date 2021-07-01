@@ -40,6 +40,7 @@ class Main extends React.Component {
     searchAbout = (id) => {
         let cleanCardImage = document.querySelectorAll('.card-image')
         let cleanCardReveal = document.querySelectorAll('.card-reveal')
+        debugger
         if (this.state.changeID){
             for (let i=0; i< cleanCardImage.length; i++){
                 cleanCardImage[i].style.overflow = "visible"
@@ -51,7 +52,6 @@ class Main extends React.Component {
             .then(response => response.json())
             .then(data => this.setState(
                 {runtime: data.Runtime,
-                    result: data.totalResults,
                     genre: data.Genre,
                     actors: data.Actors,
                     plot: data.Plot,
