@@ -1,86 +1,92 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import Cards from "../Components/Cards";
 import {Preloader} from "../Components/Preloader";
 import {Search} from "../Components/Search";
 
 const API_KEY = process.env.REACT_APP_API_KEY
 
+function Main () {
 
-class Main extends React.Component {
-    state = {
-        movies: [],
-        result: 10,
-        loading: true,
-        runtime: '',
-        genre: '',
-        actors: '',
-        plot: '',
-        country: '',
-        ratings: '',
-        changeID:'',
-        prevactors: ''
-    }
-    componentDidMount() {
+    const [movies, setMovies] = useState([]);
+    const [result, setResult] = useState(10);
+    const [loading, setLoading] = useState(true);
+    const [runtime, setRuntime] = useState('');
+    const [genre, setGenre] = useState('');
+    const [actors, setActors] = useState('');
+    const [plot, setPlot] = useState('');
+    const [country, setCountry] = useState('');
+    const [ratings, setRatings] = useState('');
+    const [changedID, setChangedID] = useState(1);
+    const [prevactors, setPrevactors] = useState('');
+
+    useEffect(() => {
         fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=iron man`)
             .then(response => response.json())
-            .then(data => this.setState({movies: data.Search, result: data.totalResults, loading: false}))
+            .then(data => {
+                setMovies(data.Search);
+                setResult(data.totalResults)
+                setLoading(false)
+            })
             .catch((err) => {
                 console.log(err);
-                this.setState({loading: false})
+                setLoading(false)
             })
-    }
+    }, [])
 
-    searchMovies = (str, type = 'all', page) => {
-        this.setState({loading: true})
+    const searchMovies = (str, type = 'all', page) => {
+        setLoading(true)
         fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=${str !== '' ? `${str}` : 'iron man'}${
             type !== 'all' ? `&type=${type}` : ''}${page !== 1 ? `&page=${page}` : ''}`)
             .then(response => response.json())
-            .then(data => this.setState({movies: data.Search, result: data.totalResults, loading: false}))
+            .then(data => {
+                setMovies(data.Search)
+                setResult(data.totalResults)
+                setLoading(false)
+            })
     }
-    searchAbout = (id) => {
+    const searchAbout = (id) => {
         let cleanCardImage = document.querySelectorAll('.card-image')
         let cleanCardReveal = document.querySelectorAll('.card-reveal')
-        debugger
-        if (this.state.changeID){
-            for (let i=0; i< cleanCardImage.length; i++){
+        if (changedID) {
+            for (let i = 0; i < cleanCardImage.length; i++) {
                 cleanCardImage[i].style.overflow = "visible"
                 cleanCardReveal[i].style.display = 'none'
             }
         }
-        this.setState({actors: ''})
+        setActors('');
         fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&i=${id}`)
             .then(response => response.json())
-            .then(data => this.setState(
-                {runtime: data.Runtime,
-                    genre: data.Genre,
-                    actors: data.Actors,
-                    plot: data.Plot,
-                    country: data.Country,
-                    ratings: data.imdbRating,
-                    loading: false,
-                    changeID: id
-                }))
-        this.setState({prevactors: this.state.actors})
+            .then(data => {
+                    setRuntime(data.Runtime);
+                    setGenre(data.Genre);
+                    setActors(data.Actors);
+                    setPlot(data.Plot);
+                    setCountry(data.Country);
+                    setRatings(data.imdbRating);
+                    setLoading(false);
+                    setChangedID(id)
+                }
+            )
+        setPrevactors(actors)
     }
 
-    render() {
-        const {movies, result} = this.state
-        return <main className='container content'>
-            <Search searchMovies={this.searchMovies}
-                    result={result}/>
-            {
-                !this.state.loading ?
-                    <Cards movies={movies}
-                           searchAbout={this.searchAbout}
-                           {...this.state}
-                    />
-                    : <Preloader/>
-            }
-
-        </main>
-    }
-
-
+    return <main className='container content'>
+        <Search searchMovies={searchMovies}
+                result={result}/>
+        {!loading ?
+            <Cards movies={movies}
+                   actors={actors}
+                   runtime={runtime}
+                   genre={genre}
+                   plot={plot}
+                   country={country}
+                   ratings={ratings}
+                   prevactors={prevactors}
+                   searchAbout={searchAbout}
+            />
+            : <Preloader/>
+        }
+    </main>
 }
 
 export {Main}

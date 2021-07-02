@@ -2,6 +2,7 @@ import React from 'react'
 import {Preloader} from "./Preloader";
 
 function Card(props) {
+
     const {
         Title: title,
         Year: year,
