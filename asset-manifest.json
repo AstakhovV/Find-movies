@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/Find-movies/static/css/main.4204ecb7.chunk.css",
-    "main.js": "/Find-movies/static/js/main.c90cdf55.chunk.js",
-    "main.js.map": "/Find-movies/static/js/main.c90cdf55.chunk.js.map",
+    "main.js": "/Find-movies/static/js/main.c90906cd.chunk.js",
+    "main.js.map": "/Find-movies/static/js/main.c90906cd.chunk.js.map",
     "runtime-main.js": "/Find-movies/static/js/runtime-main.1bae2226.js",
     "runtime-main.js.map": "/Find-movies/static/js/runtime-main.1bae2226.js.map",
-    "static/js/2.459e5dbc.chunk.js": "/Find-movies/static/js/2.459e5dbc.chunk.js",
-    "static/js/2.459e5dbc.chunk.js.map": "/Find-movies/static/js/2.459e5dbc.chunk.js.map",
+    "static/js/2.32f4acf0.chunk.js": "/Find-movies/static/js/2.32f4acf0.chunk.js",
+    "static/js/2.32f4acf0.chunk.js.map": "/Find-movies/static/js/2.32f4acf0.chunk.js.map",
     "index.html": "/Find-movies/index.html",
     "static/css/main.4204ecb7.chunk.css.map": "/Find-movies/static/css/main.4204ecb7.chunk.css.map",
-    "static/js/2.459e5dbc.chunk.js.LICENSE.txt": "/Find-movies/static/js/2.459e5dbc.chunk.js.LICENSE.txt"
+    "static/js/2.32f4acf0.chunk.js.LICENSE.txt": "/Find-movies/static/js/2.32f4acf0.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.1bae2226.js",
-    "static/js/2.459e5dbc.chunk.js",
+    "static/js/2.32f4acf0.chunk.js",
     "static/css/main.4204ecb7.chunk.css",
-    "static/js/main.c90cdf55.chunk.js"
+    "static/js/main.c90906cd.chunk.js"
   ]
 }
